@@ -1,0 +1,52 @@
+{% extends 'temp.html.twig' %}
+
+{% block title %}Product{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-4">
+        <div class="card">
+            <div class="card-header">
+                <h3>
+                Product
+                <a class="btn btn-warning float-end"  href="{{ path('app_product_index') }}">back to list</a>
+                </h3>
+            </div>
+            <div class="card-body">    
+                <table class="table table-primary"  >
+                    <tbody>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <td>{{ product.id }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <td>{{ product.name }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Price</th>
+                            <td>{{ product.price }}</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">Anciente</th>
+                            <td>{{ product.anciente }}</td>
+                        </tr>
+                        <tr>
+                            <th>Rate</th>
+                            <td>{{ product.rate }}</td>
+                        </tr>
+                        <tr>
+                            <th>Photo</th>
+                            <td><img style="width:170px" src="/images/{{ product.photo }}"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a class="btn btn-primary" href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                <a class="btn">{{ include('product/_delete_form.html.twig') }}</a>
+            </div>  
+        </div>  
+    </div>    
+</div>
+{% endblock %}

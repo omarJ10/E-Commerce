@@ -1,0 +1,44 @@
+{% extends 'temp.html.twig' %}
+
+{% block title %}Product index{% endblock %}
+
+{% block body %}
+    <div>
+    <h1>Product index</h1>
+
+    <table class="table" class="table table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Anciente</th>
+                <th>Rate</th>
+                <th>Photo</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.id }}</td>
+                <td>{{ product.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.anciente }}</td>
+                <td>{{ product.rate }}</td>
+                <td><img style="width:170px" src="/images/{{ product.photo }}"></td>
+                <td>
+                    <a class="btn btn-primary" href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+                    <a class="btn btn-warning" href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+{% endblock %}
