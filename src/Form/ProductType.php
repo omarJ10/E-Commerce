@@ -18,7 +18,7 @@ class ProductType extends AbstractType
         $builder
         ->add('name',TextType::class, [
             'attr' => [
-                'class' => 'form-control mt-2 mb-4',
+                'class' => 'form-control mt- mb-4',
             ]
         ])
 
@@ -38,7 +38,8 @@ class ProductType extends AbstractType
         ])
         ->add('photo', FileType::class,
             [
-                'attr' => ['class' => 'custom-file-input'],
+                'data_class' => null,
+                'attr' => ['class' => 'form-control mt-2'],
                 'constraints'=> new File( ['mimeTypes'=>['image/jpeg','image/jpg','image/png','image/svg']],
             )])
         ->add('OK', SubmitType::class,

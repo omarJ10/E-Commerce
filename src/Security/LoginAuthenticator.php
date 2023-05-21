@@ -6,6 +6,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
@@ -22,10 +23,13 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
     public const LOGIN_ROUTE = 'app_login';
 
     private UrlGeneratorInterface $urlGenerator;
+    private $router;
 
-    public function __construct(UrlGeneratorInterface $urlGenerator)
+    
+    public function __construct(RouterInterface $router,UrlGeneratorInterface $urlGenerator)
     {
         $this->urlGenerator = $urlGenerator;
+        $this->router = $router;
     }
 
     public function authenticate(Request $request): Passport
@@ -42,11 +46,22 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             ]
         );
     }
-
+    public function getUser($credentials, UserProviderInterface $userProvider)
+    {
+        // Récupère l'utilisateur correspondant aux informations d'authentification
+        return $userProvider->loadUserByUsername($credentials['email']);
+    }
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
-        return new RedirectResponse($this->urlGenerator->generate('app_product_index'));
-        
+       // Récupère le rôle de l'utilisateur authentifié
+       $role = $token->getUser()->getRoles();
+
+       // Redirige vers l'interface utilisateur ou administrateur en fonction du rôle
+       if (in_array('ROLE_ADMIN',$role)  ) {
+           return new RedirectResponse($this->router->generate('admin'));
+       } else {
+           return new RedirectResponse($this->router->generate('index'));
+       }
     }
 
     protected function getLoginUrl(Request $request): string

@@ -1,6 +1,10 @@
 index:
    path: /
    controller: App\Controller\HomeController::index
+admin:
+   path: /admin/product
+   controller: App\Controller\ProductController::index
+
 cart:
     path: /cart
     controller: App\Controller\CartController::index

@@ -16,6 +16,9 @@ class HomeController extends AbstractController
     public function index(): Response
     {
         $products = $this->getDoctrine()->getRepository(Product::class)->findBy([]);
+
+        $user = $this->getUser();
+        
         return $this->render('home/index.html.twig', [
             'products' => $products,
         ]);
