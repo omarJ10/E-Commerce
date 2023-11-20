@@ -18,10 +18,9 @@ class ProductType extends AbstractType
         $builder
         ->add('name',TextType::class, [
             'attr' => [
-                'class' => 'form-control mt- mb-4',
+                'class' => 'form-control mt-2 mb-4',
             ]
         ])
-
         ->add('price', MoneyType::class,[
             'attr' => [
                 'class' => 'form-control mt-2 mb-4',

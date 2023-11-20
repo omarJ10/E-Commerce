@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Routing\RouterInterface;
@@ -38,16 +39,22 @@ class ProductController extends AbstractController
 
     /**
      * @Route("/new", name="app_product_new", methods={"GET", "POST"})
+     * @throws TransportExceptionInterface
      */
-    public function new(Request $request ,ProductRepository $produitRepository,MailerService $mailerService): Response
-    {        
+    public function new
+    (
+        Request $request ,
+        ProductRepository $produitRepository,
+        MailerService $mailerService
+    ) : Response
+    {
         
         $produit = new Product();
         $form = $this->createForm(ProductType::class, $produit);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $produit = $form->getData(); 
+            $produit = $form->getData();
             //****************Manage Uploaded FileName
             $photo_prod = $form->get('photo')->getData(); 
             $originalFilename = $photo_prod->getClientOriginalName(); 
@@ -56,7 +63,7 @@ class ProductController extends AbstractController
             $produit->setPhoto($newFilename);
             //****************
             $entityManager = $this->getDoctrine()->getManager(); 
-            $entityManager->persist($produit); 
+            $entityManager->persist($produit);
             $entityManager->flush();
 
             $mailerMessage = $produit->getName() . " a ete modifier avec succés ✅";

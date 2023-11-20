@@ -3,7 +3,7 @@
 {% block title %}Hello CartController!{% endblock %}
 
 {% block body %}
-{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
     <section class="breadcrumb-option">
         <div class="container">
             <div class="row">
@@ -56,9 +56,10 @@
                                             </div>
                                         </td>
                                         <td class="cart__price">$ {{ element.totalByProduct }}</td>
-                                        <td class="cart__close"><a class="fa fa-close" href="{{path("delete", {id: element.produitId})}}"></a></td>
+                                        <td class="cart__close"><a class="fa fa-close" onclick="return confirm('Are you sure you want to delete this item?')" href="{{path("delete", {id: element.produitId})}}"></a></td>
                                     </tr>
                                 {% else %}
+                                    
                                     <tr>
                                         <td colspan="5" class="text-center">Votre panier est vide</td>
                                     </tr>
@@ -85,12 +86,11 @@
                         <ul>
                             <li>Total <span>$ <td class="text-end">{{ total }} €</td></span></li>
                         </ul>
-                        <a href="{{path("delete_all")}}" class="primary-btn">Clear ALL</a>
+                        <a href="{{path("delete_all")}}" class="primary-btn" onclick="return confirm('Are you sure you want to delete all this item?')">Clear ALL</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-{% else %}
-    
+
 {% endblock %}

@@ -1,6 +1,7 @@
 index:
    path: /
    controller: App\Controller\HomeController::index
+
 admin:
    path: /admin/product
    controller: App\Controller\ProductController::index
@@ -8,6 +9,15 @@ admin:
 cart:
     path: /cart
     controller: App\Controller\CartController::index
+
 app_add:
     path: /add/{id}
     controller: App\Controller\CartController::add
+
+product_search:
+    path: /search
+    controller: App\Controller\ShopController::search
+
+shop:
+    path: /shop
+    controller: App\Controller\ShopController::index

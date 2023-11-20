@@ -34,25 +34,23 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
-            <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('app_product_index') }}">Admin Management</a>
+            <div class="container justify-content-between w-100">
+                <a class="navbar-brand" href="{{ path('app_product_index') }}">Admin Management</a>
             
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{ path('app_product_index') }}">Produit</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{ path('app_product_index') }}">Product</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_product_new') }}">Add Product</a>
+                        </li>
+                        
+                    </ul>
+                    <li style="margin-right: 0; list-style-type: none;">
+                        <a class="btn btn-danger" href="{{path('app_logout')}}">Logout</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_product_new') }}">Add Product</a>
-                    </li>
-                    
-                </ul>
-                <li style="margin-right: 0; list-style-type: none;">
-                    <a class="btn btn-danger" href="{{path('app_logout')}}">Logout</a>
-                </li>
-                
-                
-            </div>
+                </div>
             </div>
         </nav>
        {% block body %}{% endblock %}

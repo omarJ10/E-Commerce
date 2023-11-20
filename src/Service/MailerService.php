@@ -2,6 +2,7 @@
 namespace App\Service;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -11,6 +12,10 @@ class MailerService{
     public function __construct(MailerInterface $mailer) {
         $this->mailer = $mailer;
     }
+
+    /**
+     * @throws TransportExceptionInterface
+     */
     public function sendEmail(
         $to = 'jalledomar2001@gmail.com',
         $content,

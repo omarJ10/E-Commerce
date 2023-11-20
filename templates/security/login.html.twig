@@ -24,7 +24,7 @@
 <div class="container">
     <div class="position-relative">
         <div class="row">
-            <div class="col-6 mt-4 m-auto" >
+            <div class="col-6 mt-4 m-auto">
                 <div class="card">
                     <div class="card-header">
                         <h3>User Login Page</h3>
@@ -55,20 +55,14 @@
                                 value="{{ csrf_token('authenticate') }}"
                             >
 
-                            {#
-                                Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-                                See https://symfony.com/doc/current/security/remember_me.html
-                            #}
+                            
 
-                        {#        <div class="checkbox mb-3">#}
-                        {#            <label>#}
-                        {#                <input type="checkbox" name="_remember_me"> Remember me#}
-                        {#            </label>#}
-                        {#        </div>#}
-
-                            <button class="btn btn-lg btn-primary mt-2" type="submit">
+                            <button class="btn btn-lg btn-primary mt-3 mb-2" type="submit">
                                 Sign in
                             </button>
+                            <div class="mb-3">
+                                Not registred ? <a href="{{ path('app_register') }}" class="btn btn-success">register now</a>
+                            </div>
                         </form>
                     </div>
                 </div>

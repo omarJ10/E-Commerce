@@ -36,7 +36,9 @@ class CartController extends AbstractController
             $panierData = [];
             $total = 0;
             $totalByProduct = [];
-
+            if($panier==[]){
+                return $this->redirectToRoute("index");
+            }
             foreach ($panier as $id => $quantity){
                 $product=$productRepository->find($id);
                 $panierData[] = [
@@ -105,7 +107,7 @@ class CartController extends AbstractController
 
        // On sauvegarde dans la session
        $session->set("panier", $panier);
-
+       
        return $this->redirectToRoute("app_cart");
    }
 

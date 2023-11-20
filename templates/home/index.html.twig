@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ShopController!{% endblock %}
+{% block title %}Hello MEN FASHION!{% endblock %}
 
 {% block body %}
 <style>
@@ -116,7 +116,7 @@
                {%for product in products%}
                 <div class="col-lg-3 col-md-6 col-sm-6 col-md-6 col-sm-6 mix new-arrivals">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="images/{{product.photo}}">
+                        <div class="product__item__pic set-bg" data-setbg="/images/{{product.photo}}">
                             
                             <span class="label">{{product.anciente}}</span>
                             <ul class="product__hover">
